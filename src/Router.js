@@ -9,6 +9,7 @@ import Payment from './pages/Payment/Payment';
 import Main from './pages/Main/Main';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
+import Jacket from './pages/Jacket/Jacket';
 import ScrollTop from './components/ScrollTop/ScrollTop';
 
 const Router = () => {
@@ -24,6 +25,8 @@ const Router = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/" element={<Main />} />
+        <Route path="/Jacket" element={<Jacket />} />
+        <Route path="/Detail" element={<Detail />} />
       </Routes>
       <Footer />
     </BrowserRouter>

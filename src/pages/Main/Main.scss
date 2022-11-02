@@ -1,0 +1,7 @@
+@import '/src/styles/variables.scss';
+
+.mainWrap {
+  @include flex-center;
+  flex-direction: column;
+  padding-top: 97px;
+}
