@@ -150,5 +150,6 @@ const Login = styled.div`
   display: flex;
   list-style: none;
   width: 150px;
+  cursor: pointer;
   justify-content: space-between;
 `;
