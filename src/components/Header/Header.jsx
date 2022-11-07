@@ -81,8 +81,21 @@ const Header = () => {
               </Button>
             ))}
           </Box>
-
-          <Box sx={{}}>
+          <Login>
+            <li
+              // className={token ? 'hide' : ''}
+              onClick={() => navigate('/login')}
+            >
+              로그인
+            </li>
+            <li
+              // className={token ? 'hide' : ''}
+              onClick={() => navigate('/signup')}
+            >
+              회원가입
+            </li>
+          </Login>
+          {/* <Box sx={{}}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -111,7 +124,7 @@ const Header = () => {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+          </Box> */}
         </StyledToolBar>
       </Container>
     </StyledAppBar>
@@ -131,4 +144,11 @@ const StyledToolBar = styled(Toolbar)`
     display: flex;
     justify-content: space-around;
   }
+`;
+
+const Login = styled.div`
+  display: flex;
+  list-style: none;
+  width: 150px;
+  justify-content: space-between;
 `;
