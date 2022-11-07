@@ -9,6 +9,8 @@ import Payment from './pages/Payment/Payment';
 import Main from './pages/Main/Main';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
+import Jacket from './pages/Jacket/Jacket';
+import Signup from './pages/Signup/Signup';
 import ScrollTop from './components/ScrollTop/ScrollTop';
 
 const Router = () => {
@@ -18,12 +20,15 @@ const Router = () => {
       {/* <ScrollTop /> */}
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/register" element={<Register />} />
         <Route path="/list" element={<List />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/" element={<Main />} />
+        <Route path="/Jacket" element={<Jacket />} />
+        <Route path="/Detail" element={<Detail />} />
       </Routes>
       <Footer />
     </BrowserRouter>
