@@ -1,126 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useState, useEffect } from 'react';
 
 const Jacket = () => {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    fetch(`data/data.json`)
+      // fetch(`${API.LIST}/${tabSwtich}/list`) //`name=${name}`
+      // fetch(`http://172.20.10.3:3000/products/${tabSwtich}/list`) //`name=${name}`
+      .then(res => res.json())
+      .then(data => setData(data)); //통신 할땐 data.result
+  }, []);
+  // console.log(data, '데이타');
   return (
     <Box>
       <AllWrap>
-        <Link to={`/detail/1`}>
-          <ProductWrap>
-            <span>자켓</span>
-            <img
-              className="prducut_img"
-              src="/images/자켓1.webp"
-              alt="상품 이미지"
-            />
-            <button className="cart_btn">
-              <i className="fa-solid fa-cart-shopping" />
-            </button>
-          </ProductWrap>
-          <h6 className="product_title">제품이름</h6>
-          <p className="product_price">40,000원</p>
-        </Link>
-        <Link to={`/detail/2`}>
-          <ProductWrap>
-            <span>자켓</span>
-            <img
-              className="prducut_img"
-              src="/images/자켓1.webp"
-              alt="상품 이미지"
-            />
-            <button className="cart_btn">
-              <i className="fa-solid fa-cart-shopping" />
-            </button>
-          </ProductWrap>
-          <div>
-            <h6 className="product_title">제품이름</h6>
-            <p className="product_price">40,000원</p>
-          </div>
-        </Link>
-        <Link to={`/detail/1`}>
-          <ProductWrap>
-            <span>자켓</span>
-            <img
-              className="prducut_img"
-              src="/images/자켓1.webp"
-              alt="상품 이미지"
-            />
-            <button className="cart_btn">
-              <i className="fa-solid fa-cart-shopping" />
-            </button>
-          </ProductWrap>
-          <h6 className="product_title">제품이름</h6>
-          <p className="product_price">40,000원</p>
-        </Link>
-        <Link to={`/detail/2`}>
-          <ProductWrap>
-            <span>자켓</span>
-            <img
-              className="prducut_img"
-              src="/images/자켓1.webp"
-              alt="상품 이미지"
-            />
-            <button className="cart_btn">
-              <i className="fa-solid fa-cart-shopping" />
-            </button>
-          </ProductWrap>
-          <div>
-            <h6 className="product_title">제품이름</h6>
-            <p className="product_price">40,000원</p>
-          </div>
-        </Link>
-        <Link to={`/detail/2`}>
-          <ProductWrap>
-            <span>자켓</span>
-            <img
-              className="prducut_img"
-              src="/images/자켓1.webp"
-              alt="상품 이미지"
-            />
-            <button className="cart_btn">
-              <i className="fa-solid fa-cart-shopping" />
-            </button>
-          </ProductWrap>
-          <div>
-            <h6 className="product_title">제품이름</h6>
-            <p className="product_price">40,000원</p>
-          </div>
-        </Link>
-        <Link to={`/detail/2`}>
-          <ProductWrap>
-            <span>자켓</span>
-            <img
-              className="prducut_img"
-              src="/images/자켓1.webp"
-              alt="상품 이미지"
-            />
-            <button className="cart_btn">
-              <i className="fa-solid fa-cart-shopping" />
-            </button>
-          </ProductWrap>
-          <div>
-            <h6 className="product_title">제품이름</h6>
-            <p className="product_price">40,000원</p>
-          </div>
-        </Link>
-        <Link to={`/detail/2`}>
-          <ProductWrap>
-            <span>자켓</span>
-            <img
-              className="prducut_img"
-              src="/images/자켓1.webp"
-              alt="상품 이미지"
-            />
-            <button className="cart_btn">
-              <i className="fa-solid fa-cart-shopping" />
-            </button>
-          </ProductWrap>
-          <div>
-            <h6 className="product_title">제품이름</h6>
-            <p className="product_price">40,000원</p>
-          </div>
-        </Link>
+        {data?.map(data => {
+          return (
+            <Link to={`/detail/${data.id}`}>
+              <ProductWrap>
+                <img className="prducut_img" src={data.img} alt="상품 이미지" />
+                <button className="cart_btn">
+                  <i className="fa-solid fa-cart-shopping" />
+                </button>
+              </ProductWrap>
+              <h6 className="product_title">{data.name}</h6>
+              <p className="product_price">{data.price}</p>
+            </Link>
+          );
+        })}
       </AllWrap>
     </Box>
   );

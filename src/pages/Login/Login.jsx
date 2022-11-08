@@ -94,7 +94,7 @@ const Login = () => {
       </form>
       <p className="forgetInput"> 아이디 / 비밀번호 찾기 </p>
       <div className="goToSignUp">
-        <span>정육각 회원이신가요?</span>
+        <span>Befine 회원이신가요?</span>
         <span onClick={goToSignUp} className="goToSignUpBtn">
           회원가입하기
         </span>
