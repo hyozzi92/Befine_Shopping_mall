@@ -1,12 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
-
-const Detail = () => {
-  return <div></div>;
-};
-
-export default Detail;
-=======
 import styled from 'styled-components';
 
 const Detail = () => {
@@ -101,4 +93,3 @@ const ImgWrap = styled.div`
     height: auto;
   }
 `;
->>>>>>> 843a232 (Detail layout done)
