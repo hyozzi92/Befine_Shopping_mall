@@ -1,7 +1,8 @@
 import React from 'react';
 import Carousel from '../Carousel/Carousel';
 import './Main.scss';
-const Main = () => {
+const Main = data => {
+  console.log(data);
   return (
     <div>
       <Carousel />

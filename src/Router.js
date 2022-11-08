@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
@@ -14,6 +14,16 @@ import Signup from './pages/Signup/Signup';
 import ScrollTop from './components/ScrollTop/ScrollTop';
 
 const Router = () => {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    fetch(`data/data.json`)
+      // fetch(`${API.LIST}/${tabSwtich}/list`) //`name=${name}`
+      // fetch(`http://172.20.10.3:3000/products/${tabSwtich}/list`) //`name=${name}`
+      .then(res => res.json())
+      .then(data => setData(data)); //통신 할땐 data.result
+  }, []);
+
   return (
     <BrowserRouter>
       <Header />
@@ -26,7 +36,7 @@ const Router = () => {
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/payment" element={<Payment />} />
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<Main data={data} />} />
         <Route path="/Jacket" element={<Jacket />} />
         <Route path="/Detail" element={<Detail />} />
       </Routes>
