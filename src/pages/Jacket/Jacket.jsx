@@ -13,7 +13,7 @@ const Jacket = () => {
       .then(res => res.json())
       .then(data => setData(data)); //통신 할땐 data.result
   }, []);
-  console.log(data, '데이타');
+  // console.log(data, '데이타');
   return (
     <Box>
       <AllWrap>

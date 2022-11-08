@@ -15,6 +15,7 @@ const Detail = () => {
       .then(res => setData(res)); //통신 할땐 data.result
   }, [id]);
   //useParams 개념 공부 후 진행하기!!
+  console.log(data);
   return (
     <div>
       {data?.map(data => {
