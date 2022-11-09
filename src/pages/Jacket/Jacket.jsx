@@ -19,7 +19,10 @@ const Jacket = () => {
       <AllWrap>
         {data?.map(data => {
           return (
-            <Link to={`/detail/${data.id}`}>
+            <Link
+              to={`/detail/${data.id}`}
+              style={{ textDecoration: 'none', color: 'black' }}
+            >
               <ProductWrap>
                 <img className="prducut_img" src={data.img} alt="상품 이미지" />
                 <button className="cart_btn">
@@ -87,16 +90,6 @@ const ProductWrap = styled.div`
     width: 300px;
     height: 300px;
     object-fit: fill;
-    &:hover {
-      width: 330px;
-      height: 330px;
-      transition: all 0.5s;
-    }
-    &:not(:hover) {
-      width: 300px;
-      height: 300px;
-      transition: all 0.5s;
-    }
   }
   button {
     position: absolute;

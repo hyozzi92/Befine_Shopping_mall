@@ -68,7 +68,7 @@ const Detail = () => {
                 <SizeSelect />
               </span>
             </p>
-            <div className="BtnWrap">
+            <div className="BtnWrap" style={{ marginTop: '100px' }}>
               <button>구매하기</button>
               <button>장바구니</button>
             </div>
@@ -89,7 +89,7 @@ const AllWrap = styled.div`
   height: auto;
 
   margin: 0 auto;
-  margin-top: 150px;
+  margin-top: 100px;
 `;
 
 const LeftWrap = styled.div`
@@ -104,7 +104,7 @@ const RightWrap = styled.div`
 
   flex-direction: column;
   width: 45%;
-  height: 500px;
+  height: 600px;
 
   padding: 25px;
   p {
