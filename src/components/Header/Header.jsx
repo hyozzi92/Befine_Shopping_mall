@@ -14,6 +14,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import styled from 'styled-components';
 
 const pages = ['Jacket', 'Top', 'Bottom', 'Hats', 'Accessories'];
@@ -94,6 +95,9 @@ const Header = () => {
             >
               회원가입
             </li>
+            <div onClick={() => navigate('/cart')}>
+              <ShoppingCartIcon />
+            </div>
           </Login>
           {/* <Box sx={{}}>
             <Tooltip title="Open settings">
@@ -149,7 +153,8 @@ const StyledToolBar = styled(Toolbar)`
 const Login = styled.div`
   display: flex;
   list-style: none;
-  width: 150px;
+  width: 200px;
   cursor: pointer;
   justify-content: space-between;
+  align-items: center;
 `;

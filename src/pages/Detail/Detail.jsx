@@ -8,12 +8,40 @@ import SizeSelect from './SizeSelect';
 const Detail = () => {
   const { id } = useParams();
   const [data, setData] = useState();
-  const [change, setChange] = useState();
+  useEffect(() => {
+    fetch('/data/data.json')
+      // fetch(`${API.LIST}/${tabSwtich}/list`) //`name=${name}`
+      // fetch(`http://172.20.10.3:3000/products/${tabSwtich}/list`) //`name=${name}`
+      .then(res => res.json())
+      .then(res => setData(res)); //통신 할땐 data.result
+  }, [id]);
 
-  const handleChange = e => {
-    setChange(e.target.value);
+  const [inputValues, setInputValues] = useState({
+    qty: '',
+    size: '',
+  });
+
+  const handleInput = event => {
+    const { name, value } = event.target;
+    setInputValues({ ...inputValues, [name]: value });
   };
-  console.log(change);
+
+  // const cartBtn = () => {
+  //   fetch(`${API.SIGNUP}`, {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json;charset=utf-8' },
+  //     body: JSON.stringify({
+  //       id: data.id,
+  //       name: data.name,
+  //       qty: inputValues.qty,
+  //       size: inputValues.size,
+  //     }),
+  //   })
+  //     .then(response => response.json())
+  //     .then(result => result);
+  // };
+  console.log(inputValues);
+
   useEffect(() => {
     fetch('/data/data.json')
       // fetch(`${API.LIST}/${tabSwtich}/list`) //`name=${name}`
@@ -57,15 +85,20 @@ const Detail = () => {
                   placeholder="수량"
                   margin="normal"
                   size="small"
+                  name="qty"
                   style={{ width: 100 }}
-                  onChange={handleChange}
+                  onChange={handleInput}
+                  value={inputValues.qty}
                 />
               </span>
             </p>
             <p>
               사이즈 :{' '}
               <span style={{ marginLeft: '30px' }}>
-                <SizeSelect />
+                <SizeSelect
+                  handleInput={handleInput}
+                  inputValues={inputValues}
+                />
               </span>
             </p>
             <div className="BtnWrap" style={{ marginTop: '100px' }}>
