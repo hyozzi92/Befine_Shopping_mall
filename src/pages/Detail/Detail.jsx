@@ -42,15 +42,15 @@ const Detail = () => {
   // };
   console.log(inputValues);
 
-  useEffect(() => {
-    fetch('/data/data.json')
-      // fetch(`${API.LIST}/${tabSwtich}/list`) //`name=${name}`
-      // fetch(`http://172.20.10.3:3000/products/${tabSwtich}/list`) //`name=${name}`
-      .then(res => res.json())
-      .then(res => setData(res)); //통신 할땐 data.result
-  }, [id]);
-  //useParams 개념 공부 후 진행하기!!
-  console.log(data);
+  // useEffect(() => {
+  //   fetch('/data/data.json')
+  //     // fetch(`${API.LIST}/${tabSwtich}/list`) //`name=${name}`
+  //     // fetch(`http://172.20.10.3:3000/products/${tabSwtich}/list`) //`name=${name}`
+  //     .then(res => res.json())
+  //     .then(res => setData(res)); //통신 할땐 data.result
+  // }, [id]);
+  // //useParams 개념 공부 후 진행하기!!
+  // console.log(data);
 
   return (
     <div>
