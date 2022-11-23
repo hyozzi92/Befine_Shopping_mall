@@ -141,6 +141,10 @@ const StyledAppBar = styled(AppBar)`
     display: flex;
     justify-content: space-around;
     background-color: #1f1f1f;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
   }
 `;
 const StyledToolBar = styled(Toolbar)`

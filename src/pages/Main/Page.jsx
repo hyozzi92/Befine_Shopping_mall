@@ -1,40 +1,48 @@
 import React from 'react';
-import Carousel from '../Carousel/Carousel';
-import './Main.scss';
-import { useEffect } from 'react';
-import { useState } from 'react';
 import styled from 'styled-components';
-import CenteredTabs from './Tab.jsx';
 
-const Main = () => {
-  const [datas, setData] = useState();
-  useEffect(() => {
-    fetch(`../data/data.json`)
-      // fetch(`${API.LIST}/${tabSwtich}/list`) //`name=${name}`
-      // fetch(`http://172.20.10.3:3000/products/${tabSwtich}/list`) //`name=${name}`
-      .then(res => res.json())
-      .then(data => setData(data)); //통신 할땐 data.result
-  }, []);
-  console.log(datas, '메인');
+import { Link } from 'react-router-dom';
+
+function Page({ datas }) {
+  console.log(datas, '페이지');
   return (
     <div>
-      <Carousel />
-      <div style={{ marginTop: '100px' }}>
-        <CenteredTabs datas={datas} />
-      </div>
+      <Box>
+        <AllWrap>
+          {datas?.map(data => {
+            return (
+              <Link
+                to={`/detail/${data.id}`}
+                style={{ textDecoration: 'none', color: 'black' }}
+              >
+                <ProductWrap>
+                  <img
+                    className="prducut_img"
+                    src={data.img}
+                    alt="상품 이미지"
+                  />
+                  <button className="cart_btn">
+                    <i className="fa-solid fa-cart-shopping" />
+                  </button>
+                </ProductWrap>
+                <h6 className="product_title">{data.name}</h6>
+                <p className="product_price">{data.price}</p>
+              </Link>
+            );
+          })}
+        </AllWrap>
+      </Box>
     </div>
   );
-};
+}
 
-export default Main;
-
+export default Page;
 const Box = styled.div`
   display: flex;
   justify-content: center;
   width: 80%;
   margin: 0 auto;
 `;
-
 const AllWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -42,6 +50,7 @@ const AllWrap = styled.div`
   justify-content: space-evenly;
   gap: 50px;
   margin-top: 30px;
+  min-height: 500px;
 
   /* width: 500px; */
   h6 {
