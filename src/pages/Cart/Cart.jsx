@@ -8,40 +8,50 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import styled from 'styled-components';
 import CartButton from './CartButton';
+import { useDispatch, useSelector } from 'react-redux';
 
-const TAX_RATE = 0.07;
-
-function ccyFormat(num) {
-  return `${num.toFixed(2)}`;
-}
-
-function priceRow(qty, unit) {
-  return qty * unit;
-}
-
-function createRow(desc, qty, unit) {
-  const price = priceRow(qty, unit);
-  return { desc, qty, unit, price };
-}
-
-function subtotal(items) {
-  return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
-}
-
-const rows = [
-  createRow('Paperclips (Box)', 100, 1.15),
-  createRow('Paper (Case)', 10, 45.99),
-  createRow('Waste Basket', 2, 17.99),
-];
-
-const invoiceSubtotal = subtotal(rows);
-const invoiceTaxes = TAX_RATE * invoiceSubtotal;
-const invoiceTotal = invoiceTaxes + invoiceSubtotal;
+import { addCount, minusCount } from '../../store';
 
 export default function SpanningTable() {
+  let state = useSelector(state => {
+    return state;
+  });
+  console.log(state, 'gg');
+  let dispatch = useDispatch();
+
+  const TAX_RATE = 0.07;
+
+  function ccyFormat(num) {
+    return `${num.toFixed(2)}`;
+  }
+
+  function priceRow(qty, unit) {
+    return qty * unit;
+  }
+
+  function createRow(desc, qty, unit) {
+    const price = priceRow(qty, unit);
+    return { desc, qty, unit, price };
+  }
+
+  function subtotal(items) {
+    return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
+  }
+
+  const rows = [
+    createRow(state.cart[0].name, state.cart[0].count, 1.15),
+    createRow(state.cart[1].name, state.cart[1].count, 45.99),
+    createRow(state.cart[2].name, state.cart[2].count, 17.99),
+  ];
+
+  const invoiceSubtotal = subtotal(rows);
+  const invoiceTaxes = TAX_RATE * invoiceSubtotal;
+  const invoiceTotal = invoiceTaxes + invoiceSubtotal;
+
   return (
     <BackGround component={Paper}>
       <div className="Banner">
+        <button>버튼</button>
         <p>두개이상 구매시 무료배송!!</p>
       </div>
       <Table sx={{ minWidth: 700 }} aria-label="spanning table">
@@ -60,10 +70,31 @@ export default function SpanningTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
+          {rows.map((row, i) => (
             <TableRow key={row.desc}>
               <TableCell>{row.desc}</TableCell>
-              <TableCell align="right">{row.qty}</TableCell>
+              <TableCell align="right">
+                <button
+                  onClick={() => {
+                    if (row.qty < 2) {
+                      alert('1보다 작을수 없다.');
+                    } else {
+                      return dispatch(minusCount(i));
+                    }
+                  }}
+                >
+                  -
+                </button>
+                {row.qty}
+
+                <button
+                  onClick={() => {
+                    return dispatch(addCount(i));
+                  }}
+                >
+                  +
+                </button>
+              </TableCell>
               <TableCell align="right">{row.unit}</TableCell>
               <TableCell align="right">{ccyFormat(row.price)}</TableCell>
             </TableRow>
