@@ -16,6 +16,7 @@ const Main = () => {
       .then(data => setData(data)); //통신 할땐 data.result
   }, []);
   console.log(datas, '메인');
+  console.log(datas);
   return (
     <div>
       <Carousel />
