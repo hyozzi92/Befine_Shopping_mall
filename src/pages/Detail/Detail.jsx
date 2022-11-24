@@ -26,6 +26,27 @@ const Detail = () => {
     setInputValues({ ...inputValues, [name]: value });
   };
 
+  const cartAdd = () => {
+    if (inputValues.qty == '' || inputValues.size == '') {
+      alert('수량 또는 사이즈를 선택해주세요');
+    } else alert('장바구니에 추가되었습니다');
+  };
+
+  // const buyItem = () => {
+  //   fetch(`api주소`, {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json;charset=utf-8' },
+  //     body: JSON.stringify({
+  //       id: data.id,
+  //       name: data.name,
+  //       qty: inputValues.qty,
+  //       size: inputValues.size,
+  //     }),
+  //   })
+  //     .then(response => response.json())
+  //     .then(result => result);
+  // };
+
   // const cartBtn = () => {
   //   fetch(`${API.SIGNUP}`, {
   //     method: 'POST',
@@ -41,16 +62,6 @@ const Detail = () => {
   //     .then(result => result);
   // };
   console.log(inputValues);
-
-  // useEffect(() => {
-  //   fetch('/data/data.json')
-  //     // fetch(`${API.LIST}/${tabSwtich}/list`) //`name=${name}`
-  //     // fetch(`http://172.20.10.3:3000/products/${tabSwtich}/list`) //`name=${name}`
-  //     .then(res => res.json())
-  //     .then(res => setData(res)); //통신 할땐 data.result
-  // }, [id]);
-  // //useParams 개념 공부 후 진행하기!!
-  // console.log(data);
 
   return (
     <div>
@@ -103,7 +114,7 @@ const Detail = () => {
             </p>
             <div className="BtnWrap" style={{ marginTop: '100px' }}>
               <button>구매하기</button>
-              <button>장바구니</button>
+              <button onClick={cartAdd}>장바구니</button>
             </div>
           </RightWrap>
         </AllWrap>

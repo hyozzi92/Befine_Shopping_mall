@@ -22,7 +22,7 @@ export default function SpanningTable() {
   const TAX_RATE = 0.07;
 
   function ccyFormat(num) {
-    return `${num.toFixed(2)}`;
+    return `${num.toLocaleString()}원`;
   }
 
   function priceRow(qty, unit) {
@@ -38,11 +38,13 @@ export default function SpanningTable() {
     return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
   }
 
-  const rows = [
-    createRow(state.cart[0].name, state.cart[0].count, 1.15),
-    createRow(state.cart[1].name, state.cart[1].count, 45.99),
-    createRow(state.cart[2].name, state.cart[2].count, 17.99),
-  ];
+  const rows = [];
+  for (let i = 0; i < state.cart.length; i++) {
+    rows.push(
+      createRow(state.cart[i].name, state.cart[i].count, state.cart[i].price)
+    );
+  }
+  console.log(state, 'state');
 
   const invoiceSubtotal = subtotal(rows);
   const invoiceTaxes = TAX_RATE * invoiceSubtotal;
@@ -51,7 +53,6 @@ export default function SpanningTable() {
   return (
     <BackGround component={Paper}>
       <div className="Banner">
-        <button>버튼</button>
         <p>두개이상 구매시 무료배송!!</p>
       </div>
       <Table sx={{ minWidth: 700 }} aria-label="spanning table">
@@ -77,7 +78,7 @@ export default function SpanningTable() {
                 <button
                   onClick={() => {
                     if (row.qty < 2) {
-                      alert('1보다 작을수 없다.');
+                      alert('1보다 작을수 없습니다.');
                     } else {
                       return dispatch(minusCount(i));
                     }
